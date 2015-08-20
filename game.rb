@@ -2,7 +2,7 @@ require 'pry'
 
 class Cell
 	attr_accessor :i,:j,:alive, :nextgen_alive
-	def initialize(i,j,alive=true)
+	def initialize(i,j,alive=false)
 		@i = i	
 		@j = j
 		@alive = alive
@@ -39,34 +39,40 @@ class Game
 		@col = col
 		@cells = Array.new(row) { |i| Array.new(col) { |j| Cell.new(i,j) } }		
 		@neighbours = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]]
-		# @cells = [[1,0],[0,1]]	
+		@cells = [[1,2,3],[4,5,6],[7,8,9]]
+		# p @cells
+		# binding.pry
 	end
 
 	def gamestate
-		@cells.each do |row|
-			row.each do |cell|
-					binding.pry
-			cell.nextgen_state? (check_neighbours(cell.i , cell.j))
-			p cell
-			p cell.alive
-
-			cell.set_nextgen
+		p @cells
+		@cells.each_with_index do |row,indexr|
+			row.each_with_index do |cell,indexc|
+			
+			cell.nextgen_state? check_neighbours(cell.i , cell.j)
+			p cell.i
+			get
+		
+			# cell.set_nextgen
 			end
 		end
 		# @cells.each {|row| row.each {|cell| cell.set_nextgen}}
-		@cells.each do |row|
-			row.each do |cell|
-			p cell
-			p cell.nextgen_alive
+		# @cells.each do |row|
+		# 	row.each do |cell|
+		# 	p cell
+		# 	p cell.nextgen_alive
 
-			end
-		end
+		# 	end
+		# end
 
 	end
 
 	def check_neighbours(i,j)
 		@sum = 0	
+		p @cells
+
 		@neighbours.each do |neighbour_i, neighbour_j|
+			# p @cells[neighbour_i + i][neighbour_j + j]
 			if (@cells[neighbour_i + i][neighbour_j + j]).alive
 				@sum+=1
 			end
