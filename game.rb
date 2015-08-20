@@ -2,20 +2,12 @@ require 'pry'
 
 class Cell
 	attr_accessor :i,:j,:alive, :nextgen_alive
-	def initialize(i,j,alive=false)
+	def initialize(i,j,alive=true)
 		@i = i	
 		@j = j
 		@alive = alive
 	end
 	
-	def printcell
-		if self.alive == true
-			print "0"
-		else
-			print "-"
-		end
-	end
-
 	def nextgen_state?(sum)
 	if @alive == true	
 		if [2,3].include? sum
@@ -47,7 +39,7 @@ class Game
 		@col = col
 		@cells = Array.new(row) { |i| Array.new(col) { |j| Cell.new(i,j) } }		
 		@neighbours = [[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]]
-		@cells = [[1,0,0],[0,1,0],[0,0,1]]		
+		# @cells = [[1,0],[0,1]]	
 	end
 
 	def gamestate
@@ -55,9 +47,21 @@ class Game
 			row.each do |cell|
 					binding.pry
 			cell.nextgen_state? (check_neighbours(cell.i , cell.j))
+			p cell
+			p cell.alive
+
+			cell.set_nextgen
 			end
 		end
-		@cells.each {|row| row.each {|cell| cell.set_nextgen}}
+		# @cells.each {|row| row.each {|cell| cell.set_nextgen}}
+		@cells.each do |row|
+			row.each do |cell|
+			p cell
+			p cell.nextgen_alive
+
+			end
+		end
+
 	end
 
 	def check_neighbours(i,j)
@@ -80,7 +84,7 @@ class Game
 	end
 end
 
-a = Game.new(2,2)
+a = Game.new(3,3)
 a.start
 # p a.cells
 # p "*"*80
@@ -89,5 +93,5 @@ a.start
 # p a.cells.first.first
 # p "*"*80
 # p a.cells.first.first.alive
-# p a.check_neighbours(1,1)
+# p a.check_neighbours(0,0)
 
