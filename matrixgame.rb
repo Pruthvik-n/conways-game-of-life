@@ -12,14 +12,14 @@ class Matrix
   end
 
   def is_signed?(num) 
-  	num.to_s.match(/\A[+]?\d+?(\.\d+)?\Z/) == nil ? false : true
+  	num.to_s.match(/\A[+]?\d+?\Z/) == nil ? false : true
   end			
 
   def printmatrix
     i = 0
     self.each do |number|
       print number.to_s + " "
-      i+= 1
+      i += 1
       if i == self.column_size
         print "\n"
         i = 0
@@ -47,31 +47,31 @@ class Matrix
 							
 							$count+=1
 					end
-					if is_signed?(i-1) == true && is_signed?(j) ==true && @old_a[i-1,j]=='0'
+					if is_signed?(i-1)  && is_signed?(j) && @old_a[i-1,j]=='0'
 							
 							$count+=1
 					end
-					if is_signed?(i-1) == true && is_signed?(j+1) ==true && @old_a[i-1,j+1]=='0'
+					if is_signed?(i-1)  && is_signed?(j+1) && @old_a[i-1,j+1]=='0'
 						
 							$count+=1
 					end
-					if is_signed?(i) == true && is_signed?(j-1) ==true && @old_a[i,j-1]=='0'
+					if is_signed?(i)  && is_signed?(j-1) && @old_a[i,j-1]=='0'
 							
 							$count+=1
 					end
-					if is_signed?(i) == true && is_signed?(j+1) ==true && @old_a[i,j+1]=='0'
+					if is_signed?(i)  && is_signed?(j+1) && @old_a[i,j+1]=='0'
 					
 							$count+=1
 					end
-					if is_signed?(i+1) == true && is_signed?(j-1) ==true && @old_a[i+1,j-1]=='0'
+					if is_signed?(i+1)  && is_signed?(j-1) && @old_a[i+1,j-1]=='0'
 							
 							$count+=1
 					end
-					if is_signed?(i+1) == true && is_signed?(j) ==true && @old_a[i+1,j]=='0'
+					if is_signed?(i+1)  && is_signed?(j) && @old_a[i+1,j]=='0'
 						
 							$count+=1
 					end
-					if is_signed?(i+1) == true && is_signed?(j+1) == true && @old_a[i+1,j+1]=='0'
+					if is_signed?(i+1)  && is_signed?(j+1)  && @old_a[i+1,j+1]=='0'
 							
 							$count+=1
 					end
