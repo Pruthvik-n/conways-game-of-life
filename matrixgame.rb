@@ -11,10 +11,9 @@ class Matrix
     @rows[row][column] = value
   end
 
-  def is_signed?(obj) 
-  	obj.to_s.match(/\A[+]?\d+?(\.\d+)?\Z/) == nil ? false : true
-  end
-
+  def is_signed?(num) 
+  	num.to_s.match(/\A[+]?\d+?(\.\d+)?\Z/) == nil ? false : true
+  end			
 
   def printmatrix
     i = 0
