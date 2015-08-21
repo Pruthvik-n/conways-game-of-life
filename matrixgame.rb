@@ -29,7 +29,7 @@ class Matrix
 
 	def game
 		
-		@old_a=self
+		@old_a = self
 		for i in 1..9999999999999999999999
 		
 		new_a = Matrix.build(17, 17) {|i| i = '-' }
@@ -138,4 +138,21 @@ b=Matrix[['-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-'],
 		 ['-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-'],
 		 ['-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-']]
 
-a.game
+
+
+
+
+puts "Enter the number of rows and columns"
+rows = gets.chomp.to_i
+cols = gets.chomp.to_i
+
+"Input '0' for alive cell and '-' for dead cell"
+custom = Matrix.build(rows, cols) {|i| i = '-' }
+0.upto(rows-1) do |i|
+	0.upto(cols-1) do |j|
+		puts "Enter if cell is alive or not? at #{i},#{j}"
+		custom[i,j] = gets.chomp
+	end
+end
+
+custom.game
